@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  intensity: 1
+  feeling_type: MyString
+
+two:
+  user: two
+  intensity: 1
+  feeling_type: MyString
