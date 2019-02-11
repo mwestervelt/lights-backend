@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :password_digest
       t.string :avatar
-      t.references :state, foreign_key: true
+      t.references :country, foreign_key: true
 
       t.timestamps
     end

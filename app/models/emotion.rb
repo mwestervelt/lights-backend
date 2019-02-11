@@ -1,3 +1,5 @@
 class Emotion < ApplicationRecord
-  belongs_to :user
+  has_many :user_emotions
+  has_many :users, through: :user_emotions
+  has_many :countries, through: :users
 end

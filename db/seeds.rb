@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+require 'faker'
+
+UserEmotion.destroy_all
+Emotion.destroy_all
+User.destroy_all
+
+happy = Emotion.create(feeling_type: "happiness")
+countries = Country.all
+countries.each do |country|
+  u = User.create(name: Faker::Name::name, email: Faker::Internet::unique::email, country: country, password: Faker::Color.color_name)
+  UserEmotion.create(user: u, emotion: happy, intensity: rand(1..10))
+end

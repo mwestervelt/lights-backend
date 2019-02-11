@@ -10,25 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_08_220932) do
+ActiveRecord::Schema.define(version: 2019_02_11_161849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "emotions", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "intensity"
-    t.string "feeling_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_emotions_on_user_id"
-  end
-
-  create_table "states", force: :cascade do |t|
+  create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "emotions", force: :cascade do |t|
+    t.string "feeling_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_emotions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "emotion_id"
+    t.integer "intensity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["emotion_id"], name: "index_user_emotions_on_emotion_id"
+    t.index ["user_id"], name: "index_user_emotions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,9 +43,13 @@ ActiveRecord::Schema.define(version: 2019_02_08_220932) do
     t.string "name"
     t.string "password_digest"
     t.string "avatar"
+    t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_users_on_country_id"
   end
 
-  add_foreign_key "emotions", "users"
+  add_foreign_key "user_emotions", "emotions"
+  add_foreign_key "user_emotions", "users"
+  add_foreign_key "users", "countries"
 end
