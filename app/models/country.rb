@@ -11,4 +11,8 @@ class Country < ApplicationRecord
     arr.inject(:+).to_f / arr.size
   end
 
+  def self.super_query
+    Country.select('countries.id', 'countries.name', 'AVG(user_emotions.intensity) as "average"', 'emotions.feeling_type').joins(:users => { :user_emotions => :emotion }).order('countries.id').group('countries.id', 'countries.name', 'emotions.feeling_type')
+  end
+
 end
