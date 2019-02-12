@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create, :index]
         post '/login', to: 'auth#create'
-      resources :emotions, only: [:create]
+      resources :user_emotions, only: [:create]
       resources :countries, only: [:index]
       get '/profile', to: 'users#profile'
 
