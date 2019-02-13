@@ -6,9 +6,9 @@ class Api::V1::UserEmotionsController < ApplicationController
     @emotion = Emotion.find(emotion_id)
     @user_emotion = UserEmotion.create(user: @user, intensity: intensity, emotion: @emotion)
     if @user_emotion.valid?
-      render json: { message: 'you got it dude'}, status: :created
+      render json: { message: 'Thank you for sharing!'}, status: :created
     else
-      render json: { error: 'failed to create your emotion' }, status: :not_acceptable
+      render json: { message: 'Failed to create your emotion' }, status: :not_acceptable
     end
 
   end
