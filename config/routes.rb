@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         post '/login', to: 'auth#create'
       resources :user_emotions, only: [:create]
       resources :countries, only: [:index]
+      resources :emotions, only: [:index]
       get '/profile', to: 'users#profile'
 
     end
